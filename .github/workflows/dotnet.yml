@@ -1,0 +1,50 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+      
+  pubBinaries:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: publish windows
+      run: dotnet publish -c Release -r win10-x64 src/FSharpLanguageServer
+    - name: build osx
+      run: dotnet publish -c Release -r osx.10.11-x64 src/FSharpLanguageServer
+    - name: publish linux
+      run: dotnet publish -c Release -r linux-x64 src/FSharpLanguageServer
+      #I think i need to do something wiith these to make the be accessable to the next action(upload artifact i think)
+  publish:
+    runs-on: ubuntu-latest
+    needs: pubBinaries
+    if: success()
+    steps:
+      - run: npx vsce package 
+      - uses: actions/download-artifact@v2
+      - run: npx vsce publish --packagePath $(find . -iname *.vsix)
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
