@@ -35,7 +35,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet tool restore
     - name: paket install 
-      run: paket install
+      run: dotnet paket install
     - name: publish
       run: dotnet publish -c Release src/FSharpLanguageServer
       
