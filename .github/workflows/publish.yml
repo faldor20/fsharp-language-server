@@ -2,10 +2,13 @@ name: publish-extension
 
 on:
   workflow_dispatch:
-    
-jobs:
-  
-      
+    inputs:
+      name: 
+        description: 'test'
+        required: false
+        default: 'hi'
+
+jobs:   
   pubBinaries:
     runs-on: ubuntu-latest
     
