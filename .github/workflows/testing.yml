@@ -16,7 +16,9 @@ jobs:
         with:
           dotnet-version: 6.0.x
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet tool restore
+      - name: paket setup
+        run: dotnet paket install
       - name: Build
         run: dotnet build --no-restore
       - name: Test
