@@ -8,7 +8,6 @@ on:
 
 jobs:
   build-test:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -29,14 +28,17 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    - name: Setupdotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
-    - name: publish windows
-      run: dotnet publish -c Release -r win10-x64 src/FSharpLanguageServer
-    - name: build osx
-      run: dotnet publish -c Release -r osx.10.11-x64 src/FSharpLanguageServer
-    - name: publish linux
-      run: dotnet publish -c Release -r linux-x64 src/FSharpLanguageServer
+      run: dotnet tool restore
+    - name: paket install 
+      run: paket install
+    - name: publish
+      run: dotnet publish -c Release src/FSharpLanguageServer
+      
       #I think i need to do something wiith these to make the be accessable to the next action(upload artifact i think)
   publish:
     runs-on: ubuntu-latest
