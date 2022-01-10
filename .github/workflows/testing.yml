@@ -15,6 +15,11 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
+      - uses: actions/cache@v2
+        with:
+          path: ./paket
+          key: ${{ runner.os }}-${{ hashFiles('**/paket.lock','**/paket.dependencies') }}
+      - run: bash ./scripts/paketActions.sh  
       - name: Restore dependencies
         run: dotnet tool restore
       - name: paket setup
