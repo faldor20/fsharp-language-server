@@ -1,6 +1,8 @@
 # F# Language Server Updated
 
 **This has been forked from GeorgeWfraser's original project because that appears to be unmaintained.**
+**I have access to the original repository so all development is continuing there. https://github.com/fsprojects/fsharp-language-server**
+**This now exists only as a way to publish new versions of the extension because I don't have access to publishing the original**
 
 It has been updated to support fcs 41 and .NET 6.0.
 I have used code from [FSharpAutoComplete](https://github.com/fsharp/FsAutoComplete) and some adjustments to the original to add some features:
