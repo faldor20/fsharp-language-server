@@ -21,7 +21,7 @@ I may at some point work on supporting the vim and emacs versions of these exten
 My work here is done specificallly in reponse to this issue with Ionide [here](https://github.com/fsharp/FsAutoComplete/issues/805), which makes it unusuable for me and potentially many others.
 Almost all credit for this should go to georgewfraser and the guys of at FSAC. Really I've mostly just smashed stuff together, added glue and fixed some bugs
 
-## Now the original descritption
+## Now the original description
 
 This project is an implementation of the [language server protocol](https://microsoft.github.io/language-server-protocol/) using the [F# Compiler Service](https://fsharp.github.io/FSharp.Compiler.Service/).
 
