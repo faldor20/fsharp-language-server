@@ -1,4 +1,10 @@
+# Unmaintained
+
+All of the issues I've had with the other fsharp language server extension ionide have been resolved and the fsharp team have plans to make an official language server. I see no reason for this project to exist
+
 # F# Language Server Updated
+
+
 
 **This has been forked from GeorgeWfraser's original project because that appears to be unmaintained.**
 
